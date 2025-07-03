@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>اختبار الذكورة</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Cairo', sans-serif;
+      color: #ffffff;
+      overflow-x: hidden;
+      background: linear-gradient(to bottom right, #000000, #0a0f2c);
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      margin: 60px auto;
+      background-color: rgba(10, 10, 30, 0.85);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(0, 102, 204, 0.7);
+    }
+
+    h1 {
+      color: #8fc9ff;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 15px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: #0056b3;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #007bff;
+    }
+
+    #result {
+      font-size: 20px;
+      margin-top: 20px;
+      color: #ffee58;
+      text-align: center;
+    }
+
+    .ads {
+      margin: 20px auto;
+      text-align: center;
+      max-width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 30px 10px;
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+
+      button {
+        font-size: 14px;
+        padding: 12px;
+      }
+    }
+  </style>
+  <!-- إعلان AdSense Responsive -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="ads">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="1234567890"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+  <div class="container">
+    <h1>اختبار الذكورة 🌌</h1>
+    <div id="question">جاهز؟ اضغط ابدأ</div>
+    <div id="answers"></div>
+    <button id="startBtn" onclick="startQuiz()">ابدأ</button>
+    <div id="result"></div>
+  </div>
+
+  <div class="ads">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="1234567890"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+  <script>
+    const questions = [
+      { q: "لو أحد غلط عليك قدام الناس، وش تسوي؟", a: [
+        { text: "أوقفه عند حده فورًا", score: 2 },
+        { text: "أرد عليه بهدوء", score: 1 },
+        { text: "أسكت وما أرد", score: 0 }
+      ]},
+      { q: "لو صديقك تورط بمشكلة، تساعده؟", a: [
+        { text: "أكيد، ما أتركه أبدًا", score: 2 },
+        { text: "لو قدرت، أساعد", score: 1 },
+        { text: "مالي دخل", score: 0 }
+      ]},
+      { q: "كيف تتعامل مع شخص يتجاوز حدوده معك؟", a: [
+        { text: "أحطه عند حده مباشرة", score: 2 },
+        { text: "أعطيه تحذير أول", score: 1 },
+        { text: "أتجاهل الموضوع", score: 0 }
+      ]},
+      { q: "وش تسوي لو أحد استهزأ بطموحك؟", a: [
+        { text: "أثبت له العكس بالنجاح", score: 2 },
+        { text: "أتضايق شوي وأكمل", score: 1 },
+        { text: "أحبط وأستسلم", score: 0 }
+      ]},
+      { q: "هل تشوف نفسك قد المسؤولية؟", a: [
+        { text: "أي والله وبقوة", score: 2 },
+        { text: "أحيانًا", score: 1 },
+        { text: "بصراحة لا", score: 0 }
+      ]},
+      { q: "لو شفت أحد يظلم ضعيف، تتدخل؟", a: [
+        { text: "أكيد ما أسكت", score: 2 },
+        { text: "لو قدرت أساعد بدون مشاكل", score: 1 },
+        { text: "ما لي دخل، أتفادى المشاكل", score: 0 }
+      ]},
+      { q: "هل تخاف تقول رأيك قدام الناس؟", a: [
+        { text: "لا، أقول اللي بقلبي", score: 2 },
+        { text: "أحيانًا أتكلم", score: 1 },
+        { text: "أفضل السكوت دايمًا", score: 0 }
+      ]},
+      { q: "وش تسوي إذا واجهت فشل كبير؟", a: [
+        { text: "أقوم وأرجع أحاول أقوى", score: 2 },
+        { text: "أحاول من جديد بس بحذر", score: 1 },
+        { text: "أترك الموضوع تمامًا", score: 0 }
+      ]},
+      { q: "لو شفت شي غلط قدامك، تتكلم؟", a: [
+        { text: "أوقفه فورًا لو أقدر", score: 2 },
+        { text: "ألفت الانتباه بطريقة ذكية", score: 1 },
+        { text: "أتجاهل وأسحب", score: 0 }
+      ]},
+      { q: "هل تفكر بنفسك بس ولا تهتم بغيرك؟", a: [
+        { text: "أفكر في الكل، مو بس نفسي", score: 2 },
+        { text: "أوازن بيني وبينهم", score: 1 },
+        { text: "نفسي أولًا وثانيًا وثالثًا", score: 0 }
+      ]}
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function startQuiz() {
+      score = 0;
+      current = 0;
+      document.getElementById("result").innerText = "";
+      document.getElementById("startBtn").style.display = "none";
+      showQuestion();
+    }
+
+    function showQuestion() {
+      if (current >= questions.length) {
+        showResult();
+        return;
+      }
+
+      const q = questions[current];
+      document.getElementById("question").innerText = q.q;
+
+      const answersDiv = document.getElementById("answers");
+      answersDiv.innerHTML = "";
+      q.a.forEach((ans) => {
+        const btn = document.createElement("button");
+        btn.innerText = ans.text;
+        btn.onclick = () => {
+          score += ans.score;
+          current++;
+          showQuestion();
+        };
+        answersDiv.appendChild(btn);
+      });
+    }
+
+    function showResult() {
+      const percentage = Math.round((score / (questions.length * 2)) * 100);
+      let resultText = "";
+      if (percentage === 100) resultText = "ذكورة خارقة 100٪ 🔥💪";
+      else if (percentage >= 75) resultText = "رجولة قوية بنسبة " + percentage + "% ✊";
+      else if (percentage >= 50) resultText = "رجولة متوسطة بنسبة " + percentage + "% 👍";
+      else if (percentage >= 25) resultText = "رجولة ضعيفة بنسبة " + percentage + "% 😐";
+      else resultText = "ضعف في الذكورة بنسبة " + percentage + "% 😅";
+
+      document.getElementById("question").innerText = "";
+      document.getElementById("answers").innerHTML = "";
+      document.getElementById("result").innerText = resultText;
+    }
+  </script>
+</body>
+</html>
